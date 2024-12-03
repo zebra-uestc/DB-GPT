@@ -15,10 +15,10 @@ logger = logging.getLogger(__name__)
 
 
 @register_resource(
-    _("Weaviate Config"),
-    "weaviate_vector_config",
+    _("Weaviate Vector Store"),
+    "weaviate_vector_store",
     category=ResourceCategory.VECTOR_STORE,
-    description=_("Weaviate vector config."),
+    description=_("Weaviate vector store."),
     parameters=[
         *_COMMON_PARAMETERS,
         Parameter.build_from(
@@ -56,22 +56,6 @@ class WeaviateVectorConfig(VectorStoreConfig):
     )
 
 
-@register_resource(
-    _("Weaviate Vector Store"),
-    "weaviate_vector_store",
-    category=ResourceCategory.VECTOR_STORE,
-    description=_("Weaviate vector store."),
-    parameters=[
-        Parameter.build_from(
-            _("Weaviate Config"),
-            "vector_store_config",
-            WeaviateVectorConfig,
-            description=_("the weaviate config of vector store."),
-            optional=True,
-            default=None,
-        ),
-    ],
-)
 class WeaviateStore(VectorStoreBase):
     """Weaviate database."""
 

@@ -73,8 +73,8 @@ def _normalize(vector: List[float]) -> List[float]:
 
 
 @register_resource(
-    _("OceanBase Config"),
-    "oceanbase_vector_config",
+    _("OceanBase Vector Store"),
+    "oceanbase_vector_store",
     category=ResourceCategory.VECTOR_STORE,
     parameters=[
         *_COMMON_PARAMETERS,
@@ -119,7 +119,7 @@ def _normalize(vector: List[float]) -> List[float]:
             default=None,
         ),
     ],
-    description="OceanBase vector store config.",
+    description="OceanBase vector store.",
 )
 class OceanBaseConfig(VectorStoreConfig):
     """OceanBase vector store config."""
@@ -152,22 +152,6 @@ class OceanBaseConfig(VectorStoreConfig):
     )
 
 
-@register_resource(
-    _("OceanBase Vector Store"),
-    "ob_vector_store",
-    category=ResourceCategory.VECTOR_STORE,
-    description=_("OceanBase vector store."),
-    parameters=[
-        Parameter.build_from(
-            _("OceanBase Config"),
-            "vector_store_config",
-            OceanBaseConfig,
-            description=_("the ob config of vector store."),
-            optional=True,
-            default=None,
-        ),
-    ],
-)
 class OceanBaseStore(VectorStoreBase):
     """OceanBase vector store."""
 

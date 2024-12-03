@@ -20,7 +20,7 @@ class KnowledgeOperator(MapOperator[str, Knowledge]):
     """Knowledge Factory Operator."""
 
     metadata = ViewMetadata(
-        label=_("Knowledge Loader Operator"),
+        label=_("Knowledge Operator"),
         name="knowledge_operator",
         category=OperatorCategory.RAG,
         description=_(
@@ -30,7 +30,7 @@ class KnowledgeOperator(MapOperator[str, Knowledge]):
             IOField.build_from(
                 _("knowledge datasource"),
                 "knowledge datasource",
-                dict,
+                str,
                 _("knowledge datasource, which can be a document, url, or text."),
             )
         ],
@@ -89,7 +89,7 @@ class KnowledgeOperator(MapOperator[str, Knowledge]):
         self._datasource = datasource
         self._knowledge_type = KnowledgeType.get_by_value(knowledge_type)
 
-    async def map(self, datasource: dict) -> Knowledge:
+    async def map(self, datasource: str) -> Knowledge:
         """Create knowledge from datasource."""
         if self._datasource:
             datasource = self._datasource
@@ -120,7 +120,7 @@ class ChunksToStringOperator(MapOperator[List[Chunk], str]):
             IOField.build_from(
                 _("Chunks"),
                 "chunks",
-                List[Chunk],
+                Chunk,
                 description=_("The input chunks."),
                 is_list=True,
             )

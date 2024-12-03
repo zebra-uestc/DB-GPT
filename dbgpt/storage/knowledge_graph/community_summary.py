@@ -197,6 +197,7 @@ class CommunitySummaryKnowledgeGraph(BuiltinKnowledgeGraph):
 
     async def _aload_document_graph(self, chunks: List[Chunk]) -> None:
         """Load the knowledge graph from the chunks.
+
         The chunks include the doc structure.
         """
         if not self._document_graph_enabled:
